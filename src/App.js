@@ -26,20 +26,9 @@ const App = () => {
     fetchFacts();
   }, []);
 
-  console.log(facts);
-  // useEffect(() => {
-  //   axios.get(`http://history.muffinlabs.com/date`)
-  //   .then(res => {
-  //     const facts = res.data;
-  //     setHistoricMoments({facts})
-  //   }).catch((err) => {
-  //     console.log("Error: ", err)
-  //   });
-  // });
-
   return (
     <div className="App">
-      <ul>{/* {historicMoments.facts.map(date => <li>{date.data}</li>)} */}</ul>
+      This is our 'Today in History App'
     </div>
   );
 };
