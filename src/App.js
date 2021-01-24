@@ -1,25 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import axios from "axios";
 
-function App() {
+const App = () => {
+  const [facts, setFacts] = useState();
+
+  const today = new Date();
+  const dd = today.getDate();
+  const mm = today.getMonth() + 1;
+
+  const proxyurl = "https://cors-anywhere.herokuapp.com/";
+  const requestUrl = `http://history.muffinlabs.com/date/${mm}/${dd}`;
+
+  useEffect(() => {
+    const fetchFacts = async () => {
+      const result = await axios(proxyurl + requestUrl)
+        .then((res) => {
+          console.log("SUCCESS!", res);
+          return setFacts(result.data);
+        })
+        .catch((err) => {
+          console.log("Err:", err);
+        });
+    };
+    fetchFacts();
+  }, []);
+
+  console.log(facts);
+  // useEffect(() => {
+  //   axios.get(`http://history.muffinlabs.com/date`)
+  //   .then(res => {
+  //     const facts = res.data;
+  //     setHistoricMoments({facts})
+  //   }).catch((err) => {
+  //     console.log("Error: ", err)
+  //   });
+  // });
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ul>{/* {historicMoments.facts.map(date => <li>{date.data}</li>)} */}</ul>
     </div>
   );
-}
+};
 
 export default App;
