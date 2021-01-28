@@ -1,6 +1,12 @@
-import React, { useState, useEffect } from "react";
-import "./App.css";
 import axios from "axios";
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
+import "./App.css";
+
+// import Home from "./views/Home/Home";
+import Login from "./views/Login/Login";
+// import Signup from "./views/Signup/Signup";
 
 const App = () => {
   const [facts, setFacts] = useState();
@@ -27,8 +33,17 @@ const App = () => {
   }, []);
 
   return (
-    <div className="App">
-      This is our 'Today in History App'
+    <div>
+      <Router>
+        <div>
+          <div className="App">This is our 'Today in History App'</div>;
+          <Switch>
+            {/* <Route exact path="/" component={Home} /> */}
+            <Route exact path="/login" component={Login} />
+            {/* <Route exact path="/signup" component={Signup} /> */}
+          </Switch>
+        </div>
+      </Router>
     </div>
   );
 };
