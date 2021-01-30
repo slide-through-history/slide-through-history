@@ -7,19 +7,8 @@ const service = axios.create({
 });
 
 const AUTH_SERVICE = {
-  signup(userData) {
-    return service.post("/auth/signup", userData);
-  },
-
   login(userData) {
     return service.post("/auth/login", userData);
-  },
-
-  auth(history) {
-    const authToken = localStorage.getItem("AuthToken");
-    if (authToken === null) {
-      history.push("/login");
-    }
   },
 };
 

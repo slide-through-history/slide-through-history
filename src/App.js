@@ -36,7 +36,6 @@ const App = () => {
     <div>
       <Router>
         <div>
-          <div className="App">This is our 'Today in History App'</div>;
           <Switch>
             {/* <Route exact path="/" component={Home} /> */}
             <Route exact path="/login" component={Login} />

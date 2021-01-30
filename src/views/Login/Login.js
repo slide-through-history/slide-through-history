@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+import Button from "../../components/Button/Button";
 import AUTH_SERVICE from "../../services/AuthService.js";
 
 const Login = (props) => {
@@ -33,11 +34,6 @@ const Login = (props) => {
     return props.history.push("/signup");
   };
 
-  // Function to clear errors
-  let handleClearError = () => {
-    setLifecycleState({ errors: [], isError: false, isLoading: false });
-  };
-
   // Function to handle Login credentials submission
   let handleSubmit = (event) => {
     event.preventDefault();
@@ -47,7 +43,6 @@ const Login = (props) => {
       password: credentialsState.password,
     })
       .then((response) => {
-        localStorage.setItem("AuthToken", `Bearer ${response.data.token}`);
         setLifecycleState({
           ...lifecycleState,
           isLoading: false,
@@ -70,8 +65,12 @@ const Login = (props) => {
       <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8">
           <div>
-            <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-              Sign in to your account
+            <h2 className="mt-6 text-center text-2xl font-extrabold text-gray-900 lg:text-3xl">
+              Sign in to{" "}
+              <span className="relative inline-block">
+                <span className="z-20 relative">Today in History!</span>
+                <div className="bg-indigo-300 absolute w-full h-2 bottom-0.5 z-10"></div>
+              </span>
             </h2>
             <p className="mt-2 text-center text-sm text-gray-600">
               Or
@@ -85,12 +84,15 @@ const Login = (props) => {
             </p>
           </div>
           <form className="mt-8 space-y-6" onSubmit={(e) => e.preventDefault()}>
-            <input type="hidden" name="remember" value="true" />
             <div className="rounded-md shadow-sm -space-y-px">
               <div>
-                <span className="px-6 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 my-4 w-full h-full">
-                  Active
-                </span>
+                {isError ? (
+                  <span className="px-6 inline-flex text-xs leading-5 font-semibold rounded-md bg-red-100 text-red-800 my-2 w-full h-full">
+                    {lifecycleState.errors}
+                  </span>
+                ) : (
+                  ""
+                )}
                 <label for="email-address" className="sr-only">
                   Email address
                 </label>
@@ -100,7 +102,7 @@ const Login = (props) => {
                   type="email"
                   autocomplete="email"
                   required
-                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 mb-1 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                   placeholder="Email address"
                   onChange={(e) =>
                     setCredentialsState({
@@ -110,17 +112,17 @@ const Login = (props) => {
                   }
                 />
               </div>
-              <div>
+              <div className="flex justify-end">
                 <label for="password" className="sr-only">
                   Password
                 </label>
                 <input
                   id="password"
                   name="password"
-                  type="password"
+                  type={isVisible ? "string" : "password"}
                   autocomplete="current-password"
                   required
-                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  className="appearance-none rounded-none relative flex-1 block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 mt-1 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-1 sm:text-sm"
                   placeholder="Password"
                   onChange={(e) =>
                     setCredentialsState({
@@ -129,57 +131,31 @@ const Login = (props) => {
                     })
                   }
                 />
-              </div>
-            </div>
-
-            <div className="flex items-center justify-between">
-              <div className="flex items-center">
-                <input
-                  id="remember_me"
-                  name="remember_me"
-                  type="checkbox"
-                  className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
-                />
-                <label
-                  for="remember_me"
-                  className="ml-2 block text-sm text-gray-900"
-                >
-                  Remember me
-                </label>
-              </div>
-              <div className="text-sm">
-                <a
-                  href="/signup"
-                  className="font-medium text-indigo-600 hover:text-indigo-500"
-                >
-                  Forgot your password?
-                </a>
-              </div>
-            </div>
-
-            <div>
-              <button
-                type="submit"
-                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                onClick={(e) => handleSubmit(e)}
-              >
-                <span className="absolute left-0 inset-y-0 flex items-center pl-3">
-                  <svg
-                    className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-                      clip-rule="evenodd"
+                <div class="absolute pin-r pin-t mt-3 mr-3 text-purple-lighter ">
+                  {isVisible ? (
+                    <img
+                      src="https://img.icons8.com/ios-filled/30/000000/show-password.png"
+                      alt="password-reveal"
+                      className="cursor-pointer h-6"
+                      onClick={() => {
+                        handlePasswordVisibility();
+                      }}
                     />
-                  </svg>
-                </span>
-                Sign in
-              </button>
+                  ) : (
+                    <img
+                      src="https://img.icons8.com/ios/30/000000/show-password.png"
+                      alt="password-reveal"
+                      className="cursor-pointer h-6"
+                      onClick={() => {
+                        handlePasswordVisibility();
+                      }}
+                    />
+                  )}
+                </div>
+              </div>
+            </div>
+            <div>
+              <Button clickAction={handleSubmit} clickEffect={isLoading} />
             </div>
           </form>
         </div>
