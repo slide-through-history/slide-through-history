@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 
+// Importing abstracted components
+import Alert from "../../components/Alert/Alert";
 import Button from "../../components/Button/Button";
+
+// Importing service with routes to authorization
 import AUTH_SERVICE from "../../services/AuthService.js";
 
 const Login = (props) => {
@@ -87,9 +91,10 @@ const Login = (props) => {
             <div className="rounded-md shadow-sm -space-y-px">
               <div>
                 {isError ? (
-                  <span className="px-6 inline-flex text-xs leading-5 font-semibold rounded-md bg-red-100 text-red-800 my-2 w-full h-full">
-                    {lifecycleState.errors}
-                  </span>
+                  <Alert
+                    alertMessage={lifecycleState.errors}
+                    alertType={"error"}
+                  />
                 ) : (
                   ""
                 )}
