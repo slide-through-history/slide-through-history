@@ -1,6 +1,12 @@
-import React, { useState, useEffect } from "react";
-import "./App.css";
 import axios from "axios";
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
+import "./App.css";
+
+// import Home from "./views/Home/Home";
+import Login from "./views/Login/Login";
+// import Signup from "./views/Signup/Signup";
 
 const App = () => {
   const [facts, setFacts] = useState();
@@ -62,17 +68,28 @@ const App = () => {
   }
 
   return (
-    <main className="App">
-      <h1>This is our 'Today in History App'</h1>
-      <div>
-        <form>
-          <label for="search">Search</label>
-          <input id="search" type="search" />
-          <button id="btnSearch">Go</button>
-        </form>
-        <div class="gifContainer"></div>
-      </div>
+    <div>
+      <Router>
+        <div>
+          <Switch>
+            {/* <Route exact path="/" component={Home} /> */}
+            <Route exact path="/login" component={Login} />
+            {/* <Route exact path="/signup" component={Signup} /> */}
+          </Switch>
+        </div>
+      </Router>
+      <main className="App">
+        <h1>This is our 'Today in History App'</h1>
+          <div>
+            <form>
+              <label for="search">Search</label>
+              <input id="search" type="search" />
+              <button id="btnSearch">Go</button>
+            </form>
+          <div class="gifContainer"></div>
+        </div>
     </main>
+    </div>
   );
 };
 
