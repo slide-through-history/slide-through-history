@@ -163,7 +163,7 @@ const Login = (props) => {
               <Button
                 clickAction={handleSubmit}
                 clickEffect={isLoading}
-                buttonType={"danger"}
+                buttonType={"primary"}
               />
             </div>
           </form>
