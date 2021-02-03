@@ -3,13 +3,14 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import "./App.css";
-
 // import Home from "./views/Home/Home";
 import Login from "./views/Login/Login";
+import SelectedDate from "./components/SelectedDate";
 // import Signup from "./views/Signup/Signup";
 
 const App = () => {
-  const [facts, setFacts] = useState();
+  const [data, setData] = useState();
+  const [loading, setLoading] = useState(true);
 
   const today = new Date();
   const dd = today.getDate();
@@ -19,18 +20,28 @@ const App = () => {
   const requestUrl = `http://history.muffinlabs.com/date/${mm}/${dd}`;
 
   useEffect(() => {
-    const fetchFacts = async () => {
-      const result = await axios(proxyurl + requestUrl)
-        .then((res) => {
-          console.log("SUCCESS!", res);
-          return setFacts(result.data);
+    const fetchDate = async () => {
+      return axios(proxyurl + requestUrl)
+        .then(({ data }) => {
+          console.log("SUCCESS!", data);
+          setData(data);
+          setLoading(false);
         })
         .catch((err) => {
           console.log("Err:", err);
         });
     };
-    fetchFacts();
-  }, []);
+    fetchDate();
+  }, [requestUrl]);
+
+  if (!data) return null;
+  if (loading) return "Loading...";
+
+  const {
+    date,
+    url,
+    data: { Births, Deaths, Events },
+  } = data;
 
   let API_KEY = "xshJaXRkxWNATu6iyoouFH1Kl7i3uWIG";
 
@@ -68,6 +79,15 @@ const App = () => {
   }
 
   return (
+    <div className="App">
+      This is our 'Today in History App'
+      <SelectedDate
+        date={date}
+        url={url}
+        births={Births}
+        deaths={Deaths}
+        events={Events}
+      />
     <div>
       <Router>
         <div>
