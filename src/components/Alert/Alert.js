@@ -1,6 +1,6 @@
 import React from "react";
 
-// Alert component takes 3 `alerTypes`: "success", "error", and none which outputs a blue, informative alert. It also takes `alertMessage' which is the message to be displayed by the alert.
+// Alert component takes 3 `alertTypes`: "success", "error", and none which outputs a blue, informative alert. It also takes `alertMessage' which is the message to be displayed by the alert.
 const Alert = (props) => {
   const { alertType, alertMessage } = props;
   return (
