@@ -7,6 +7,9 @@ import "./App.css";
 import Login from "./views/Login/Login";
 import SelectedDate from "./components/SelectedDate";
 // import Signup from "./views/Signup/Signup";
+import LandingPage from "./components/LandingPage/LandingPage"
+import Navbar from "./components/Navbar/Navbar"
+import Footer from "./components/Footer/Footer"
 
 const App = () => {
   const [data, setData] = useState();
@@ -80,7 +83,8 @@ const App = () => {
 
   return (
     <div className="App">
-      This is our 'Today in History App'
+      <Navbar />
+
       <SelectedDate
         date={date}
         url={url}
@@ -88,27 +92,19 @@ const App = () => {
         deaths={Deaths}
         events={Events}
       />
-    <div>
-      <Router>
-        <div>
-          <Switch>
-            {/* <Route exact path="/" component={Home} /> */}
-            <Route exact path="/login" component={Login} />
-            {/* <Route exact path="/signup" component={Signup} /> */}
-          </Switch>
-        </div>
-      </Router>
-      <main className="App">
-        <h1>This is our 'Today in History App'</h1>
+      <div>
+        <Router>
           <div>
-            <form>
-              <label for="search">Search</label>
-              <input id="search" type="search" />
-              <button id="btnSearch">Go</button>
-            </form>
-          <div class="gifContainer"></div>
-        </div>
-    </main>
+            <Switch>
+              {/* <Route exact path="/" component={Home} /> */}
+              <Route exact path="/" component={LandingPage} />
+              <Route exact path="/login" component={Login} />
+              {/* <Route exact path="/signup" component={Signup} /> */}
+            </Switch>
+          </div>
+        </Router>
+      </div>
+      <Footer />
     </div>
   );
 };
