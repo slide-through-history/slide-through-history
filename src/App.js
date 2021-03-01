@@ -16,12 +16,12 @@ const App = () => {
   const dd = today.getDate();
   const mm = today.getMonth() + 1;
 
-  const proxyurl = "https://cors-anywhere.herokuapp.com/";
-  const requestUrl = `http://history.muffinlabs.com/date/${mm}/${dd}`;
+  // const proxyurl = "https://cors-anywhere.herokuapp.com/";
+  const requestUrl = `date/${mm}/${dd}`;
 
   useEffect(() => {
     const fetchDate = async () => {
-      return axios(proxyurl + requestUrl)
+      return axios(requestUrl)
         .then(({ data }) => {
           console.log("SUCCESS!", data);
           setData(data);
