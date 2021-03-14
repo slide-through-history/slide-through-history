@@ -7,6 +7,9 @@ import "./App.css";
 import Login from "./views/Login/Login";
 import SelectedDate from "./components/SelectedDate";
 // import Signup from "./views/Signup/Signup";
+import LandingPage from "./components/LandingPage/LandingPage"
+import Navbar from "./components/Navbar/Navbar"
+import Footer from "./components/Footer/Footer"
 
 const App = () => {
   const [data, setData] = useState();
@@ -80,6 +83,8 @@ const App = () => {
 
   return (
     <div className="App">
+      <Navbar />
+
       <SelectedDate
         date={date}
         url={url}
@@ -92,12 +97,14 @@ const App = () => {
           <div>
             <Switch>
               {/* <Route exact path="/" component={Home} /> */}
+              <Route exact path="/" component={LandingPage} />
               <Route exact path="/login" component={Login} />
               {/* <Route exact path="/signup" component={Signup} /> */}
             </Switch>
           </div>
         </Router>
       </div>
+      <Footer />
     </div>
   );
 };
