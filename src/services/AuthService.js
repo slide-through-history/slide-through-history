@@ -4,6 +4,7 @@ const baseURL = process.env.REACT_APP_BACKEND_ENDPOINT;
 
 const service = axios.create({
   baseURL,
+  withCredentials: true,
 });
 
 const AUTH_SERVICE = {

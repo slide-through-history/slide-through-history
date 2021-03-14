@@ -1,6 +1,6 @@
 import React from "react";
 
-// Button component takes 3 props: `clickAction`, `clickEffect`. `clickAction` is the action drilled down from the parent component that the button will perform onClick, `clickEffect` is any lifecycle operation needed to be performed by the button, and `buttonType` is the type of UI needed for the button
+// Button component takes 3 props: `clickAction`, `clickEffect`. `buttonType` is the action drilled down from the parent component that the button will perform onClick, `clickEffect` is any lifecycle operation needed to be performed by the button, and `buttonType` is the type of UI needed for the button
 const Button = (props) => {
   const { clickAction, clickEffect, buttonType } = props;
   return (
@@ -54,7 +54,7 @@ const Button = (props) => {
       ) : buttonType === "secondary" ? (
         <button
           type="submit"
-          className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-indigo-600 bg-white hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          className="group relative w-full flex justify-center py-2 px-4 border border-indigo-600 text-sm font-medium rounded-md text-indigo-600 bg-white hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           onClick={(e) => clickAction(e)}
         >
           {" "}
@@ -62,7 +62,7 @@ const Button = (props) => {
             {" "}
             {clickEffect ? (
               <svg
-                class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                class="animate-spin -ml-1 mr-3 h-5 w-5 text-indigo"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
