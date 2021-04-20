@@ -108,17 +108,6 @@ const App = () => {
             </Switch>
           </div>
         </Router>
-        <main className="App">
-          <h1>This is our 'Today in History App'</h1>
-          <div>
-            <form>
-              <label for="search">Search</label>
-              <input id="search" type="search" />
-              <button id="btnSearch">Go</button>
-            </form>
-            <div class="gifContainer"></div>
-          </div>
-        </main>
       </div>
 >>>>>>> origin/staging
     </div>
