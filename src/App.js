@@ -87,7 +87,6 @@ const App = () => {
         deaths={Deaths}
         events={Events}
       />
-<<<<<<< HEAD
       <Router>
         <div>
           <Switch>
@@ -97,19 +96,6 @@ const App = () => {
           </Switch>
         </div>
       </Router>
-=======
-      <div>
-        <Router>
-          <div>
-            <Switch>
-              {/* <Route exact path="/" component={Home} /> */}
-              <Route exact path="/login" component={Login} />
-              {/* <Route exact path="/signup" component={Signup} /> */}
-            </Switch>
-          </div>
-        </Router>
-      </div>
->>>>>>> origin/staging
     </div>
   );
 };
