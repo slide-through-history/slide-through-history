@@ -87,17 +87,15 @@ const App = () => {
         deaths={Deaths}
         events={Events}
       />
-      <div>
-        <Router>
-          <div>
-            <Switch>
-              {/* <Route exact path="/" component={Home} /> */}
-              <Route exact path="/login" component={Login} />
-              {/* <Route exact path="/signup" component={Signup} /> */}
-            </Switch>
-          </div>
-        </Router>
-      </div>
+      <Router>
+        <div>
+          <Switch>
+            {/* <Route exact path="/" component={Home} /> */}
+            <Route exact path="/login" component={Login} />
+            {/* <Route exact path="/signup" component={Signup} /> */}
+          </Switch>
+        </div>
+      </Router>
     </div>
   );
 };
