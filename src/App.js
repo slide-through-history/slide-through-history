@@ -84,7 +84,6 @@ const App = () => {
   return (
     <div className="App">
       <Navbar />
-
       <SelectedDate
         date={date}
         url={url}
@@ -92,7 +91,6 @@ const App = () => {
         deaths={Deaths}
         events={Events}
       />
-      <div>
         <Router>
           <div>
             <Switch>
@@ -103,7 +101,6 @@ const App = () => {
             </Switch>
           </div>
         </Router>
-      </div>
       <Footer />
     </div>
   );
