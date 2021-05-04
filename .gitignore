@@ -13,7 +13,6 @@
 
 # misc
 .DS_Store
-.eslintcache
 .env
 .env.local
 .env.development.local
@@ -25,3 +24,4 @@ yarn-debug.log*
 yarn-error.log*
 
 .eslintcache
+
